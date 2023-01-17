@@ -9,12 +9,16 @@ namespace LinkeddList
     public class LinkeddList
     {
         internal Node head;
+        
+        //addNode() will add a new node to the list
         public void Add(int data)
         {
+            //Creat a new node 
             Node node = new Node(data);
-
+            //Checks if the list is empty
             if(head == null)
             {
+                //if list is empty,head will point to new node
                 head = node;
             }
             else
@@ -27,6 +31,12 @@ namespace LinkeddList
                 temp.next = node;
             }
             Console.WriteLine($"{node.data} is Inserted in Linked List\n");
+        }
+        public void Insert_front(int data)
+        {
+            Node newNode = new Node(data);
+            newNode.next = head;
+            head = newNode;
         }
        public void Display()
         {
