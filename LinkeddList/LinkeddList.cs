@@ -8,8 +8,7 @@ namespace LinkeddList
 {
     public class LinkeddList
     {
-        internal Node head;
-        
+        internal Node head; 
         //addNode() will add a new node to the list
         public void Add(int data)
         {
@@ -32,35 +31,45 @@ namespace LinkeddList
             }
             Console.WriteLine($"{node.data} is Inserted in Linked List\n");
         }
-        public void Insert_front(int data)
+        internal Node InsertAtParticularPosition(int position, int data)
         {
-            Node newNode = new Node(data);
-            newNode.next = head;
-            head = newNode;
-        }
-        public void Insert_Last(int data)
-        {
-            Node newNode = new Node(data);
-            newNode.next = null;
-            if (head == null)
+            if (position < 1)
             {
+                Console.WriteLine("Invalid Position");
+            }
+            if (position == 1)
+            {
+                Node newNode = new Node(data);
+                newNode.next = head;
                 head = newNode;
             }
             else
             {
-                Node temp = new Node(data);
-                temp = head;
-                while (temp.next != null)
-                    temp = temp.next;
-                temp.next = newNode;
+                while (position-- != 0)
+                {
+                    if (position == 1)
+                    {
+                        var node = new Node(data);
+                        node.next = head.next;
+                        head.next = node;
+                        break;
+
+                    }
+                    head = head.next;
+                }
+                if (position != 1)
+                    Console.WriteLine("Position out of range");
             }
+            Console.WriteLine();
+            Console.WriteLine("Inserted value is :" + data);
+            return head;
         }
-       
        public void Display()
         {
             int i = 1;
             Node temp = head;
 
+            Console.WriteLine();
             if (temp == null)
             {
                 Console.WriteLine("LinkeddList is Empty");
